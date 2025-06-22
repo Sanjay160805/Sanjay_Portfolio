@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ExternalLink, Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap } from 'lucide-react';
+import { Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap } from 'lucide-react';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -123,11 +123,7 @@ const Projects = () => {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex space-x-4">
-                  <button className="flex items-center space-x-2 glass-card-strong text-blue-400 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn">
-                    <ExternalLink className="w-5 h-5 group-hover/btn:animate-bounce" />
-                    <span>View Project</span>
-                  </button>
+                <div className="flex justify-center">
                   <button className="flex items-center space-x-2 glass-card text-gray-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn">
                     <Github className="w-5 h-5 group-hover/btn:animate-spin" />
                     <span>Code</span>
