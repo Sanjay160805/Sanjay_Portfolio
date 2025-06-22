@@ -7,9 +7,12 @@ import Projects from '../components/Projects';
 import Skills from '../components/Skills';
 import Achievements from '../components/Achievements';
 import Contact from '../components/Contact';
+import ContactModal from '../components/ContactModal';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [hasViewedProfile, setHasViewedProfile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,14 +31,23 @@ const Index = () => {
           }
         }
       }
+
+      // Check if user has scrolled through most of the content
+      const scrollPercentage = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrollPercentage > 0.8 && !hasViewedProfile) {
+        setHasViewedProfile(true);
+        setTimeout(() => {
+          setShowContactModal(true);
+        }, 2000); // Show modal after 2 seconds
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [hasViewedProfile]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Navigation activeSection={activeSection} />
       <main>
         <Hero />
@@ -45,6 +57,10 @@ const Index = () => {
         <Achievements />
         <Contact />
       </main>
+      <ContactModal 
+        isOpen={showContactModal} 
+        onClose={() => setShowContactModal(false)} 
+      />
     </div>
   );
 };
