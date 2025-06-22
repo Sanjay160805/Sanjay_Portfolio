@@ -8,6 +8,7 @@ import Skills from '../components/Skills';
 import Achievements from '../components/Achievements';
 import Contact from '../components/Contact';
 import ContactModal from '../components/ContactModal';
+import ParticleBackground from '../components/ParticleBackground';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -47,20 +48,23 @@ const Index = () => {
   }, [hasViewedProfile]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <Navigation activeSection={activeSection} />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Achievements />
-        <Contact />
-      </main>
-      <ContactModal 
-        isOpen={showContactModal} 
-        onClose={() => setShowContactModal(false)} 
-      />
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 relative overflow-hidden">
+      <ParticleBackground />
+      <div className="relative z-10">
+        <Navigation activeSection={activeSection} />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Achievements />
+          <Contact />
+        </main>
+        <ContactModal 
+          isOpen={showContactModal} 
+          onClose={() => setShowContactModal(false)} 
+        />
+      </div>
     </div>
   );
 };
