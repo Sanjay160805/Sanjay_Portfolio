@@ -12,7 +12,7 @@ const Projects = () => {
       color: "from-blue-500 to-cyan-500",
       tags: ["NASA API", "SQL", "Streamlit", "Analytics"],
       glowColor: "blue",
-      githubUrl: "https://github.com/username/nasa-neo-tracker"
+      githubUrl: "https://github.com/Sanjay160805/Nasa_asteroids_tracker.git"
     },
     {
       title: "Nutrition Paradox Dashboard",
@@ -21,7 +21,7 @@ const Projects = () => {
       color: "from-green-500 to-emerald-500",
       tags: ["WHO API", "Data Analysis", "SQL", "Health Data"],
       glowColor: "green",
-      githubUrl: "https://github.com/username/nutrition-paradox-dashboard"
+      githubUrl: "https://github.com/Sanjay160805/Nutrition_paradox.git"
     },
     {
       title: "Taxi Fare Prediction Web App",
@@ -30,7 +30,7 @@ const Projects = () => {
       color: "from-purple-500 to-pink-500",
       tags: ["Machine Learning", "Regression", "GradientBoosting", "Streamlit"],
       glowColor: "purple",
-      githubUrl: "https://github.com/username/taxi-fare-prediction"
+      githubUrl: "https://github.com/Sanjay160805/faretaxi.git"
     },
     {
       title: "One-Time Secure File Sharing System",
@@ -39,7 +39,7 @@ const Projects = () => {
       color: "from-orange-500 to-red-500",
       tags: ["Security", "QR Code", "Privacy", "File Sharing"],
       glowColor: "orange",
-      githubUrl: "https://github.com/username/secure-file-share"
+      githubUrl: "https://github.com/Sanjay160805/One-Time-File-Sharing.git"
     },
     {
       title: "Deepfake Detection & Reconstruction Tool",
@@ -48,7 +48,7 @@ const Projects = () => {
       color: "from-indigo-500 to-purple-500",
       tags: ["Deep Learning", "Computer Vision", "AI", "Video Analysis"],
       glowColor: "indigo",
-      githubUrl: "https://github.com/username/deepfake-detection"
+      githubUrl: "https://github.com/Sanjay160805/Deepfake.git"
     },
     {
       title: "Shopper Spectrum",
@@ -57,7 +57,7 @@ const Projects = () => {
       color: "from-emerald-500 to-teal-500",
       tags: ["E-commerce", "Analytics", "Machine Learning", "Data Visualization"],
       glowColor: "emerald",
-      githubUrl: "https://github.com/username/shopper-spectrum"
+      githubUrl: "https://github.com/Sanjay160805/ShoppingSpectrum.git"
     }
   ];
 
