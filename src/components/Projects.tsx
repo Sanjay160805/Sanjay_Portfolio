@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap } from 'lucide-react';
+import { Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap, ShoppingCart } from 'lucide-react';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -12,7 +12,8 @@ const Projects = () => {
       icon: <Globe className="w-8 h-8" />,
       color: "from-blue-500 to-cyan-500",
       tags: ["NASA API", "SQL", "Streamlit", "Analytics"],
-      glowColor: "blue"
+      glowColor: "blue",
+      githubUrl: "https://github.com/Sanjay160805/NASA-NEO-Tracker"
     },
     {
       title: "Nutrition Paradox Dashboard",
@@ -20,7 +21,8 @@ const Projects = () => {
       icon: <Database className="w-8 h-8" />,
       color: "from-green-500 to-emerald-500",
       tags: ["WHO API", "Data Analysis", "SQL", "Health Data"],
-      glowColor: "green"
+      glowColor: "green",
+      githubUrl: "https://github.com/Sanjay160805/Nutrition-Paradox-Dashboard"
     },
     {
       title: "Taxi Fare Prediction Web App",
@@ -28,7 +30,8 @@ const Projects = () => {
       icon: <Brain className="w-8 h-8" />,
       color: "from-purple-500 to-pink-500",
       tags: ["Machine Learning", "Regression", "GradientBoosting", "Streamlit"],
-      glowColor: "purple"
+      glowColor: "purple",
+      githubUrl: "https://github.com/Sanjay160805/Taxi-Fare-Prediction"
     },
     {
       title: "One-Time Secure File Sharing System",
@@ -36,7 +39,8 @@ const Projects = () => {
       icon: <Shield className="w-8 h-8" />,
       color: "from-orange-500 to-red-500",
       tags: ["Security", "QR Code", "Privacy", "File Sharing"],
-      glowColor: "orange"
+      glowColor: "orange",
+      githubUrl: "https://github.com/Sanjay160805/Secure-File-Share"
     },
     {
       title: "Deepfake Detection & Reconstruction Tool",
@@ -44,7 +48,17 @@ const Projects = () => {
       icon: <Eye className="w-8 h-8" />,
       color: "from-indigo-500 to-purple-500",
       tags: ["Deep Learning", "Computer Vision", "AI", "Video Analysis"],
-      glowColor: "indigo"
+      glowColor: "indigo",
+      githubUrl: "https://github.com/Sanjay160805/Deepfake-Detection"
+    },
+    {
+      title: "Shopper Spectrum",
+      description: "A comprehensive e-commerce analytics platform that provides deep insights into customer behavior, sales trends, and market dynamics using advanced data visualization and machine learning.",
+      icon: <ShoppingCart className="w-8 h-8" />,
+      color: "from-emerald-500 to-teal-500",
+      tags: ["E-commerce", "Analytics", "Machine Learning", "Data Visualization"],
+      glowColor: "emerald",
+      githubUrl: "https://github.com/Sanjay160805/Shopper-Spectrum"
     }
   ];
 
@@ -124,10 +138,15 @@ const Projects = () => {
 
                 {/* Project Links */}
                 <div className="flex justify-center">
-                  <button className="flex items-center space-x-2 glass-card text-gray-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 glass-card text-gray-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn"
+                  >
                     <Github className="w-5 h-5 group-hover/btn:animate-spin" />
                     <span>Code</span>
-                  </button>
+                  </a>
                 </div>
 
                 {/* Floating particles for hovered project */}
