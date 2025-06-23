@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap, ShoppingCart, ExternalLink } from 'lucide-react';
+import { Github, Database, Brain, Globe, Shield, Eye, Sparkles, Zap, ShoppingCart } from 'lucide-react';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -12,8 +12,7 @@ const Projects = () => {
       color: "from-blue-500 to-cyan-500",
       tags: ["NASA API", "SQL", "Streamlit", "Analytics"],
       glowColor: "blue",
-      githubUrl: "https://github.com/Sanjay160805/NASA-NEO-Tracker",
-      demoUrl: "https://nasa-neo-demo.example.com"
+      githubUrl: "https://github.com/username/nasa-neo-tracker"
     },
     {
       title: "Nutrition Paradox Dashboard",
@@ -22,8 +21,7 @@ const Projects = () => {
       color: "from-green-500 to-emerald-500",
       tags: ["WHO API", "Data Analysis", "SQL", "Health Data"],
       glowColor: "green",
-      githubUrl: "https://github.com/Sanjay160805/Nutrition-Paradox-Dashboard",
-      demoUrl: "https://nutrition-dashboard-demo.example.com"
+      githubUrl: "https://github.com/username/nutrition-paradox-dashboard"
     },
     {
       title: "Taxi Fare Prediction Web App",
@@ -32,8 +30,7 @@ const Projects = () => {
       color: "from-purple-500 to-pink-500",
       tags: ["Machine Learning", "Regression", "GradientBoosting", "Streamlit"],
       glowColor: "purple",
-      githubUrl: "https://github.com/Sanjay160805/Taxi-Fare-Prediction",
-      demoUrl: "https://taxi-fare-demo.example.com"
+      githubUrl: "https://github.com/username/taxi-fare-prediction"
     },
     {
       title: "One-Time Secure File Sharing System",
@@ -42,8 +39,7 @@ const Projects = () => {
       color: "from-orange-500 to-red-500",
       tags: ["Security", "QR Code", "Privacy", "File Sharing"],
       glowColor: "orange",
-      githubUrl: "https://github.com/Sanjay160805/Secure-File-Share",
-      demoUrl: "https://secure-share-demo.example.com"
+      githubUrl: "https://github.com/username/secure-file-share"
     },
     {
       title: "Deepfake Detection & Reconstruction Tool",
@@ -52,8 +48,7 @@ const Projects = () => {
       color: "from-indigo-500 to-purple-500",
       tags: ["Deep Learning", "Computer Vision", "AI", "Video Analysis"],
       glowColor: "indigo",
-      githubUrl: "https://github.com/Sanjay160805/Deepfake-Detection",
-      demoUrl: "https://deepfake-detector-demo.example.com"
+      githubUrl: "https://github.com/username/deepfake-detection"
     },
     {
       title: "Shopper Spectrum",
@@ -62,8 +57,7 @@ const Projects = () => {
       color: "from-emerald-500 to-teal-500",
       tags: ["E-commerce", "Analytics", "Machine Learning", "Data Visualization"],
       glowColor: "emerald",
-      githubUrl: "https://github.com/Sanjay160805/Shopper-Spectrum",
-      demoUrl: "https://shopper-spectrum-demo.example.com"
+      githubUrl: "https://github.com/username/shopper-spectrum"
     }
   ];
 
@@ -141,8 +135,8 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* Project Links */}
-                <div className="flex justify-center gap-4">
+                {/* Project Links - Only GitHub */}
+                <div className="flex justify-center">
                   <a
                     href={project.githubUrl}
                     target="_blank"
@@ -150,16 +144,7 @@ const Projects = () => {
                     className="flex items-center space-x-2 glass-card text-gray-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn"
                   >
                     <Github className="w-5 h-5 group-hover/btn:animate-spin" />
-                    <span>Code</span>
-                  </a>
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 glass-card text-gray-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover-lift group/btn"
-                  >
-                    <ExternalLink className="w-5 h-5 group-hover/btn:animate-spin" />
-                    <span>Demo</span>
+                    <span>View Code</span>
                   </a>
                 </div>
 
