@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X, Send, Heart, Sparkles } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -28,16 +29,16 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     setIsLoading(true);
 
     try {
-      // EmailJS configuration - you'll need to replace these with your actual values
-      const SERVICE_ID = 'your_service_id';
-      const TEMPLATE_ID = 'your_template_id';
-      const PUBLIC_KEY = 'your_public_key';
+      // EmailJS configuration with your actual values
+      const SERVICE_ID = 'service_f8cw84k';
+      const TEMPLATE_ID = 'template_g34tnco';
+      const PUBLIC_KEY = 'VBv77UFsxTYJnhJ3B';
 
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
-        to_email: 'your-email@example.com', // Replace with your actual email
+        to_email: 'sanjaychristopherraj.27csb@licet.ac.in',
       };
 
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
