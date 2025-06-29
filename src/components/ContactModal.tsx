@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { X, Send, Heart, Sparkles } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -6,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -19,16 +20,50 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      onClose();
-      setFormData({ name: '', email: '', message: '' });
-    }, 2000);
+    setIsLoading(true);
+
+    try {
+      // EmailJS configuration - you'll need to replace these with your actual values
+      const SERVICE_ID = 'your_service_id';
+      const TEMPLATE_ID = 'your_template_id';
+      const PUBLIC_KEY = 'your_public_key';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'your-email@example.com', // Replace with your actual email
+      };
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      
+      setIsSubmitted(true);
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+        setFormData({ name: '', email: '', message: '' });
+      }, 2000);
+
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,6 +106,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   onChange={handleInputChange}
                   placeholder="Enter your name"
                   required
+                  disabled={isLoading}
                   className="glass-card border-white/20 focus:border-blue-500 rounded-xl transition-colors text-white placeholder-gray-400 h-10"
                 />
               </div>
@@ -87,6 +123,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   onChange={handleInputChange}
                   placeholder="your.email@example.com"
                   required
+                  disabled={isLoading}
                   className="glass-card border-white/20 focus:border-blue-500 rounded-xl transition-colors text-white placeholder-gray-400 h-10"
                 />
               </div>
@@ -102,6 +139,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   onChange={handleInputChange}
                   placeholder="What would you like to say? Any project ideas or just want to connect?"
                   required
+                  disabled={isLoading}
                   className="glass-card border-white/20 focus:border-blue-500 rounded-xl transition-colors min-h-[80px] resize-none text-white placeholder-gray-400"
                 />
               </div>
@@ -111,16 +149,18 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   type="button"
                   variant="outline"
                   onClick={onClose}
+                  disabled={isLoading}
                   className="flex-1 glass-card border-white/30 hover:glass-card-strong text-gray-300 hover:text-white rounded-xl h-10"
                 >
                   Maybe Later
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 rounded-xl animate-gradient-x h-10"
+                  disabled={isLoading}
+                  className="flex-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 rounded-xl animate-gradient-x h-10 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  {isLoading ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>
             </form>
