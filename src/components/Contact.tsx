@@ -1,22 +1,45 @@
 
 import React from 'react';
 import { Phone, Mail, Linkedin, Github } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const { toast } = useToast();
+
+  const handleCopyToClipboard = async (text: string, type: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast({
+        title: `${type} copied!`,
+        description: `${text} has been copied to your clipboard.`,
+        duration: 3000,
+      });
+    } catch (err) {
+      toast({
+        title: "Copy failed",
+        description: "Failed to copy to clipboard. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
+
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
       label: "Phone",
       value: "+91 86109 38806",
       href: "tel:+918610938806",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      copyText: "+91 86109 38806"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       label: "Email",
       value: "sanjaychristopherraj.27csb@licet.ac.in",
       href: "mailto:sanjaychristopherraj.27csb@licet.ac.in",
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
+      copyText: "sanjaychristopherraj.27csb@licet.ac.in"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
@@ -33,6 +56,16 @@ const Contact = () => {
       color: "from-orange-500 to-red-500"
     }
   ];
+
+  const handleContactClick = (contact: typeof contactInfo[0]) => {
+    if (contact.copyText) {
+      // For phone and email, copy to clipboard
+      handleCopyToClipboard(contact.copyText, contact.label);
+    } else {
+      // For LinkedIn and GitHub, open the link
+      window.open(contact.href, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -57,12 +90,10 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {contactInfo.map((contact, index) => (
-            <a
+            <button
               key={index}
-              href={contact.href}
-              target={contact.href.startsWith('http') ? '_blank' : undefined}
-              rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="glass-card-strong rounded-2xl p-8 hover-lift hover-glow transition-all duration-500 animate-fade-in-up group"
+              onClick={() => handleContactClick(contact)}
+              className="glass-card-strong rounded-2xl p-8 hover-lift hover-glow transition-all duration-500 animate-fade-in-up group text-left w-full"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex items-center space-x-6">
@@ -80,7 +111,7 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
-            </a>
+            </button>
           ))}
         </div>
 
