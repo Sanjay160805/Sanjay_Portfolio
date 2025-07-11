@@ -1,29 +1,42 @@
 
 import React, { useState } from 'react';
 import { Github, Linkedin, Menu, X, Code, User } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavigationProps {
-  activeSection: string;
+  activeSection?: string;
 }
 
 const Navigation = ({ activeSection }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: <User className="w-4 h-4" /> },
-    { id: 'about', label: 'About Me', icon: <User className="w-4 h-4" /> },
-    { id: 'projects', label: 'Projects', icon: <Code className="w-4 h-4" /> },
-    { id: 'skills', label: 'Skills', icon: <Code className="w-4 h-4" /> },
-    { id: 'achievements', label: 'Achievements', icon: <Code className="w-4 h-4" /> },
-    { id: 'contact', label: 'Contact', icon: <User className="w-4 h-4" /> },
+    { id: 'home', label: 'Home', icon: <User className="w-4 h-4" />, route: '/' },
+    { id: 'about', label: 'About Me', icon: <User className="w-4 h-4" />, route: '/about' },
+    { id: 'projects', label: 'Projects', icon: <Code className="w-4 h-4" />, route: '/projects' },
+    { id: 'skills', label: 'Skills', icon: <Code className="w-4 h-4" />, route: '/skills' },
+    { id: 'achievements', label: 'Achievements', icon: <Code className="w-4 h-4" />, route: '/achievements' },
+    { id: 'contact', label: 'Contact', icon: <User className="w-4 h-4" />, route: '/contact' },
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (item: typeof navItems[0]) => {
+    if (location.pathname === '/' && item.id !== 'home') {
+      // If we're on the home page and clicking a section, scroll to it
+      const element = document.getElementById(item.id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to the separate page
+      navigate(item.route);
     }
     setIsMenuOpen(false);
+  };
+
+  const isCurrentRoute = (route: string) => {
+    return location.pathname === route;
   };
 
   return (
@@ -31,9 +44,12 @@ const Navigation = ({ activeSection }: NavigationProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 animate-fade-in-left">
-            <h1 className="text-xl font-bold text-white text-shadow-glow hover:text-neon transition-all duration-300">
+            <button 
+              onClick={() => navigate('/')}
+              className="text-xl font-bold text-white text-shadow-glow hover:text-neon transition-all duration-300"
+            >
               Sanjay Christopher Raj
-            </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
@@ -42,9 +58,9 @@ const Navigation = ({ activeSection }: NavigationProps) => {
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavigation(item)}
                   className={`group flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover-lift ${
-                    activeSection === item.id
+                    isCurrentRoute(item.route) || (location.pathname === '/' && activeSection === item.id)
                       ? 'glass-card-strong text-blue-400 shadow-lg animate-neon-glow'
                       : 'text-gray-300 hover:text-white hover:glass-card'
                   }`}
@@ -94,9 +110,9 @@ const Navigation = ({ activeSection }: NavigationProps) => {
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavigation(item)}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium w-full text-left transition-all duration-300 hover-lift ${
-                    activeSection === item.id
+                    isCurrentRoute(item.route) || (location.pathname === '/' && activeSection === item.id)
                       ? 'glass-card-strong text-blue-400 animate-neon-glow'
                       : 'text-gray-300 hover:text-white hover:glass-card'
                   }`}
