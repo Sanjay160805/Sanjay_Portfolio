@@ -1,113 +1,128 @@
+
 import { FaGraduationCap, FaCode, FaUsers, FaBullseye } from 'react-icons/fa';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ParticleBackground from '../components/ParticleBackground';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   const highlights = [
     {
-      icon: <FaGraduationCap className="w-6 h-6" />,
+      icon: <FaGraduationCap className="w-8 h-8" />,
       title: "B.E. Computer Science",
       subtitle: "Loyola-ICAM College",
-      color: "from-blue-500 to-cyan-500"
+      color: "bg-blue-100 text-blue-600"
     },
     {
-      icon: <FaCode className="w-6 h-6" />,
+      icon: <FaCode className="w-8 h-8" />,
       title: "AI & Full-Stack",
       subtitle: "Development Focus",
-      color: "from-purple-500 to-pink-500"
+      color: "bg-purple-100 text-purple-600"
     },
     {
-      icon: <FaUsers className="w-6 h-6" />,
+      icon: <FaUsers className="w-8 h-8" />,
       title: "Team Collaboration",
       subtitle: "Project Leadership",
-      color: "from-green-500 to-emerald-500"
+      color: "bg-green-100 text-green-600"
     },
     {
-      icon: <FaBullseye className="w-6 h-6" />,
+      icon: <FaBullseye className="w-8 h-8" />,
       title: "Problem Solving",
       subtitle: "Real-world Solutions",
-      color: "from-orange-500 to-red-500"
+      color: "bg-orange-100 text-orange-600"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 relative overflow-hidden">
-      <ParticleBackground />
-      <div className="relative z-10">
-        <Navbar />
-        <div className="pt-16">
-          <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-            {/* Animated background */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500/10 rounded-full animate-float animation-delay-1000"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-purple-500/10 rounded-full animate-float-reverse animation-delay-2000"></div>
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sidebar Navigation */}
+      <div className="fixed left-0 top-0 h-full w-20 bg-white shadow-lg z-50 flex flex-col items-center py-8">
+        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-8">
+          <span className="text-white font-bold text-lg">S</span>
+        </div>
+        
+        <nav className="flex flex-col space-y-6">
+          <Link to="/" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaUsers className="w-5 h-5" />
+          </Link>
+          <Link to="/about" className="p-3 rounded-lg bg-blue-100 text-blue-600">
+            <FaCode className="w-5 h-5" />
+          </Link>
+          <Link to="/projects" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaCode className="w-5 h-5" />
+          </Link>
+          <Link to="/contact" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaCode className="w-5 h-5" />
+          </Link>
+        </nav>
+      </div>
 
-            <div className="max-w-6xl mx-auto relative z-10">
-              <div className="text-center mb-16 animate-fade-in-up">
-                <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 text-shadow-glow">
-                  About Me
-                </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto animate-gradient-x"></div>
+      {/* Main Content */}
+      <div className="ml-20 py-16 px-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">About Me</h1>
+            <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Passionate about creating meaningful technology solutions through continuous learning and collaboration
+            </p>
+          </div>
+          
+          {/* Highlights Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {highlights.map((highlight, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className={`w-16 h-16 ${highlight.color} rounded-lg flex items-center justify-center mb-4`}>
+                  {highlight.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{highlight.title}</h3>
+                <p className="text-gray-600 text-sm">{highlight.subtitle}</p>
               </div>
-              
-              {/* Highlights Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                {highlights.map((highlight, index) => (
-                  <div
-                    key={index}
-                    className={`glass-card rounded-2xl p-6 hover-lift hover-glow transition-all duration-500 animate-fade-in-up group`}
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <div className={`w-12 h-12 bg-gradient-to-r ${highlight.color} rounded-xl flex items-center justify-center mb-4 group-hover:animate-bounce transition-all duration-300`}>
-                      <div className="text-white">
-                        {highlight.icon}
-                      </div>
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-1">{highlight.title}</h3>
-                    <p className="text-gray-400 text-sm">{highlight.subtitle}</p>
-                  </div>
-                ))}
-              </div>
+            ))}
+          </div>
 
-              {/* Main content */}
-              <div className="glass-card-strong rounded-3xl p-8 sm:p-12 shadow-2xl hover-lift animate-fade-in-up animation-delay-1000">
-                <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
-                  <p className="animate-fade-in-left animation-delay-1200">
-                    I am currently pursuing a <span className="text-blue-400 font-semibold text-shadow-glow">B.E. in Computer Science</span> at 
+          {/* Main Content Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">My Journey</h2>
+                <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+                  <p>
+                    I am currently pursuing a <span className="text-blue-600 font-semibold">B.E. in Computer Science</span> at 
                     Loyola-ICAM College of Engineering and Technology. I'm still learning and evolving in areas like 
-                    <span className="text-purple-400 font-semibold"> AI</span>, 
-                    <span className="text-pink-400 font-semibold"> full-stack development</span>, and 
-                    <span className="text-cyan-400 font-semibold"> problem-solving</span>.
+                    <span className="text-purple-600 font-semibold"> AI</span>, 
+                    <span className="text-pink-600 font-semibold"> full-stack development</span>, and 
+                    <span className="text-cyan-600 font-semibold"> problem-solving</span>.
                   </p>
                   
-                  <p className="animate-fade-in-right animation-delay-1500">
+                  <p>
                     Through various academic and hackathon projects — from 
-                    <span className="text-green-400 font-semibold"> secure file sharing</span> to 
-                    <span className="text-yellow-400 font-semibold"> deepfake detection</span> and 
-                    <span className="text-orange-400 font-semibold"> data dashboards</span> — I've developed a strong interest in 
+                    <span className="text-green-600 font-semibold"> secure file sharing</span> to 
+                    <span className="text-yellow-600 font-semibold"> deepfake detection</span> and 
+                    <span className="text-orange-600 font-semibold"> data dashboards</span> — I've developed a strong interest in 
                     building solutions that matter.
                   </p>
                   
-                  <p className="animate-fade-in-up animation-delay-1800">
-                    I value <span className="text-blue-400 font-bold text-neon">teamwork</span>, 
-                    <span className="text-purple-400 font-bold text-neon"> continuous learning</span>, and
-                    <span className="text-pink-400 font-bold text-neon"> solving real-world problems through code</span>.
+                  <p>
+                    I value <span className="text-blue-600 font-bold">teamwork</span>, 
+                    <span className="text-purple-600 font-bold"> continuous learning</span>, and
+                    <span className="text-pink-600 font-bold"> solving real-world problems through code</span>.
                   </p>
                 </div>
-
-                {/* Decorative elements */}
-                <div className="mt-8 flex justify-center space-x-4">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce animation-delay-2000"></div>
-                  <div className="w-3 h-3 bg-purple-500 rounded-full animate-bounce animation-delay-2200"></div>
-                  <div className="w-3 h-3 bg-pink-500 rounded-full animate-bounce animation-delay-2400"></div>
+              </div>
+              
+              <div className="flex justify-center">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8">
+                  <div className="w-48 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                    <span className="text-white text-4xl font-bold">SCR</span>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Always Learning</h3>
+                    <p className="text-gray-600">Passionate about technology and innovation</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </div>
-        <Footer />
       </div>
     </div>
   );

@@ -1,9 +1,6 @@
 
-import { FaGlobe, FaDatabase, FaBrain, FaShieldAlt, FaEye, FaShoppingCart, FaCamera, FaZap } from 'react-icons/fa';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ParticleBackground from '../components/ParticleBackground';
-import ProjectCard from '../components/ProjectCard';
+import { FaGlobe, FaDatabase, FaBrain, FaShieldAlt, FaEye, FaShoppingCart, FaGithub, FaBolt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const projects = [
@@ -11,107 +8,143 @@ const Projects = () => {
       title: "NASA NEO Tracker & Insights Dashboard",
       description: "Built a complete space data analytics tool using NASA's API, with paginated data collection, SQL database design, and a Streamlit dashboard featuring 25+ analytical queries and filters.",
       icon: <FaGlobe className="w-8 h-8" />,
-      color: "from-blue-500 to-cyan-500",
+      color: "bg-blue-100 text-blue-600",
       tags: ["NASA API", "SQL", "Streamlit", "Analytics"],
-      glowColor: "blue",
       githubUrl: "https://github.com/Sanjay160805/Nasa_asteroids_tracker.git"
     },
     {
       title: "Nutrition Paradox Dashboard",
       description: "A WHO-API-powered Streamlit dashboard analyzing obesity and malnutrition trends using 25+ SQL queries across global data.",
       icon: <FaDatabase className="w-8 h-8" />,
-      color: "from-green-500 to-emerald-500",
+      color: "bg-green-100 text-green-600",
       tags: ["WHO API", "Data Analysis", "SQL", "Health Data"],
-      glowColor: "green",
       githubUrl: "https://github.com/Sanjay160805/Nutrition_paradox.git"
     },
     {
       title: "Taxi Fare Prediction Web App",
       description: "Built a regression model (GradientBoosting) for real-time taxi fare prediction and deployed using Streamlit.",
       icon: <FaBrain className="w-8 h-8" />,
-      color: "from-purple-500 to-pink-500",
+      color: "bg-purple-100 text-purple-600",
       tags: ["Machine Learning", "Regression", "GradientBoosting", "Streamlit"],
-      glowColor: "purple",
       githubUrl: "https://github.com/Sanjay160805/faretaxi.git"
     },
     {
       title: "One-Time Secure File Sharing System",
       description: "Created a secure, single-use file sharing tool with link + QR generation. Enforced privacy with one-time access logic.",
       icon: <FaShieldAlt className="w-8 h-8" />,
-      color: "from-orange-500 to-red-500",
+      color: "bg-orange-100 text-orange-600",
       tags: ["Security", "QR Code", "Privacy", "File Sharing"],
-      glowColor: "orange",
       githubUrl: "https://github.com/Sanjay160805/One-Time-File-Sharing.git"
     },
     {
       title: "Deepfake Detection & Reconstruction Tool",
       description: "Developed a deep learning-powered system to detect and visualize manipulated video frames with a clean, responsive front end.",
       icon: <FaEye className="w-8 h-8" />,
-      color: "from-indigo-500 to-purple-500",
+      color: "bg-indigo-100 text-indigo-600",
       tags: ["Deep Learning", "Computer Vision", "AI", "Video Analysis"],
-      glowColor: "indigo",
       githubUrl: "https://github.com/Sanjay160805/Deepfake.git"
     },
     {
       title: "Shopper Spectrum",
       description: "A comprehensive e-commerce analytics platform that provides deep insights into customer behavior, sales trends, and market dynamics using advanced data visualization and machine learning.",
       icon: <FaShoppingCart className="w-8 h-8" />,
-      color: "from-emerald-500 to-teal-500",
+      color: "bg-emerald-100 text-emerald-600",
       tags: ["E-commerce", "Analytics", "Machine Learning", "Data Visualization"],
-      glowColor: "emerald",
       githubUrl: "https://github.com/Sanjay160805/ShoppingSpectrum.git"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 relative overflow-hidden">
-      <ParticleBackground />
-      <div className="relative z-10">
-        <Navbar />
-        <div className="pt-16">
-          <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            {/* Enhanced background effects */}
-            <div className="absolute inset-0">
-              <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full animate-blob"></div>
-              <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-full animate-blob animation-delay-2000"></div>
-              <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 rounded-full animate-blob animation-delay-4000"></div>
-            </div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-              <div className="text-center mb-20 animate-fade-in-up">
-                <div className="flex items-center justify-center space-x-4 mb-6">
-                  <FaCamera className="w-8 h-8 text-yellow-400 animate-sparkle" />
-                  <h2 className="text-4xl sm:text-5xl font-bold text-white text-shadow-glow">
-                    Featured Projects
-                  </h2>
-                  <FaZap className="w-8 h-8 text-blue-400 animate-bounce" />
-                </div>
-                <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mb-8 animate-gradient-x"></div>
-                <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-500">
-                  Here are some of my notable projects that showcase my skills in 
-                  <span className="text-blue-400 font-semibold"> AI</span>, 
-                  <span className="text-purple-400 font-semibold"> full-stack development</span>, and 
-                  <span className="text-pink-400 font-semibold"> data analytics</span>.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {projects.map((project, index) => (
-                  <ProjectCard key={index} project={project} index={index} />
-                ))}
-              </div>
-
-              {/* Bottom decoration */}
-              <div className="flex justify-center mt-16 space-x-6 animate-fade-in-up animation-delay-2000">
-                <div className="w-4 h-4 bg-blue-500 rounded-full animate-bounce animation-delay-100"></div>
-                <div className="w-4 h-4 bg-purple-500 rounded-full animate-bounce animation-delay-300"></div>
-                <div className="w-4 h-4 bg-pink-500 rounded-full animate-bounce animation-delay-500"></div>
-                <div className="w-4 h-4 bg-cyan-500 rounded-full animate-bounce animation-delay-700"></div>
-              </div>
-            </div>
-          </section>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sidebar Navigation */}
+      <div className="fixed left-0 top-0 h-full w-20 bg-white shadow-lg z-50 flex flex-col items-center py-8">
+        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mb-8">
+          <span className="text-white font-bold text-lg">S</span>
         </div>
-        <Footer />
+        
+        <nav className="flex flex-col space-y-6">
+          <Link to="/" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaBolt className="w-5 h-5" />
+          </Link>
+          <Link to="/about" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaBolt className="w-5 h-5" />
+          </Link>
+          <Link to="/projects" className="p-3 rounded-lg bg-blue-100 text-blue-600">
+            <FaBolt className="w-5 h-5" />
+          </Link>
+          <Link to="/contact" className="p-3 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors">
+            <FaBolt className="w-5 h-5" />
+          </Link>
+        </nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="ml-20 py-16 px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h1>
+            <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Here are some of my notable projects that showcase my skills in 
+              <span className="text-blue-600 font-semibold"> AI</span>, 
+              <span className="text-purple-600 font-semibold"> full-stack development</span>, and 
+              <span className="text-pink-600 font-semibold"> data analytics</span>.
+            </p>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {projects.map((project, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8">
+                {/* Project Header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`w-16 h-16 ${project.color} rounded-xl flex items-center justify-center`}>
+                    {project.icon}
+                  </div>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors"
+                  >
+                    <FaGithub className="w-5 h-5" />
+                  </a>
+                </div>
+
+                {/* Project Content */}
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center bg-white rounded-2xl shadow-lg p-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Interested in My Work?</h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Let's discuss how we can collaborate on your next project
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
+            >
+              Get In Touch
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
