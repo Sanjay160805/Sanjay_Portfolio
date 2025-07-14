@@ -1,5 +1,4 @@
-
-import { FaGraduationCap, FaCode, FaUsers, FaTarget } from 'react-icons/fa';
+import { FaGraduationCap, FaCode, FaUsers, FaBullseye } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
@@ -25,7 +24,7 @@ const About = () => {
       color: "from-green-500 to-emerald-500"
     },
     {
-      icon: <FaTarget className="w-6 h-6" />,
+      icon: <FaBullseye className="w-6 h-6" />,
       title: "Problem Solving",
       subtitle: "Real-world Solutions",
       color: "from-orange-500 to-red-500"
